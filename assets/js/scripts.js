@@ -29,7 +29,7 @@
 				prevArrow: '<span class="slick-arrow-prev"><i class="fa fa-angle-up" aria-hidden="true"></i></span>',
 				appendArrows: $('.main-slide-navigation'),
 				appendDots: $('.main-slide-navigation'),
-				autoplay: true,
+				autoplay: false,
 				autoplaySpeed: -5000,
 				responsive: [
 				{
@@ -146,7 +146,7 @@
 
 	$( 'body' ).on( 'click', '.to-top',  function(event) {
 		$('html, body').animate({
-		}, 400);
+		}, 1000).scrollTop(0);
 		return false;
 	});
 
@@ -382,10 +382,10 @@
 	/*------------------------ COUNTDOWN -----------------------*/
 	if( $( '#clockdiv' )[0] ){
 		function getTimeRemaining(endtime) {
-			var t = Date.parse(endtime) - Date.parse(new Date());
-			var seconds = Math.floor((t / 18) % 60);
-			var minutes = Math.floor((t / 12 / 60) % 60);
-			var hours = Math.floor((t / (1 * 60 * 60)) % 24);
+			var t = (Date.parse(endtime) - Date.parse(new Date()))/1000;
+			var seconds = Math.floor((t) % 60);
+			var minutes = Math.floor((t / 60) % 60);
+			var hours = Math.floor((t / (1 * 60 * 60)) % 60);
 			var days = Math.floor(t / (1 * 60 * 60 * 24));
 			return {
 				'total': t,
@@ -448,7 +448,7 @@
 								else {
 									clearInterval(int);
 								}
-								i++;
+								i=i+3;
 							},step);
 						});
 						$this.removeClass('counter-active');
